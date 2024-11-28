@@ -2,7 +2,7 @@
   "name": "appointments-backend",
   "version": "1.0.0",
   "description": "This repository contains the backend application for a booking appointments full-stack application. The backend handles API endpoints, data validation, and business logic for managing doctor appointments.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
