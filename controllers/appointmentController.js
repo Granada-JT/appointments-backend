@@ -1,5 +1,7 @@
-const db = require ("../config/database");
+const { initDatabase } = require ("../config/database");
 const { APPOINTMENT_MODEL } = require("../models/appointment");
+
+const db = initDatabase();
 
 exports.getAppointments = async(req, res) => {
 	const { startDate, endDate } = req.query;
@@ -16,9 +18,10 @@ exports.getAppointments = async(req, res) => {
 
 	db.all(sql, [startDate, endDate], (error, rows) => {
 		if (error) {
+			console.error(error)
 			return res.status(500).json({ error: "Failed to fetch appointments" });
 		}
-		res.status(200).json(rows);
+		return res.status(200).json(rows);
 	})
 }
 
@@ -55,6 +58,7 @@ exports.createAppointment = async(req, res) => {
 		[appointmentStartDate, appointmentEndTime, appointmentStartTime],
 		(error, row) => {
 			if (error) {
+				console.error(error)
 				return res.status(500).json({ error: "Error checking for overlaps" });
 			}
 
@@ -101,12 +105,12 @@ exports.editAppointment = async(req, res) => {
 	const sql = `
 		UPDATE appointments
 		SET
-		patient_name = ?,
-		appointment_start_date = ?,
-		appointment_end_date = ?,
-		appointment_start_time = ?,
-		appointment_end_time = ?,
-		comments = ?
+			patient_name = ?,
+			appointment_start_date = ?,
+			appointment_end_date = ?,
+			appointment_start_time = ?,
+			appointment_end_time = ?,
+			comments = ?
 		WHERE id = ?
 	`;
 
@@ -123,6 +127,7 @@ exports.editAppointment = async(req, res) => {
 		],
 		function (error) {
 			if (error) {
+				console.error(error)
 				return res.status(500).json({ error: "Failed to update appointment" });
 			}
 			if (this.changes === 0) {
@@ -147,6 +152,7 @@ exports.deleteAppointment = async(req, res) => {
 
 	db.run(sql, [id], function (error) {
 		if (error) {
+			console.error(error)
 			return res.status(500).json({ error: "Failed to delete appointment" });
 		}
 		if (this.changes === 0) {
