@@ -2,6 +2,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const express = require("express");
 const initDatabase = require('./config/database');
+const appointmentRoutes = require('./routes/appointment');
 
 dotenv.config();
 
@@ -13,7 +14,7 @@ app.use(cors());
 
 initDatabase();
 
-// TODO: Add routes here
+app.use("/appointment", appointmentRoutes);
 
 if (require.main === module) {
 	app.listen(process.env.PORT, () => {
