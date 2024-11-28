@@ -1,4 +1,5 @@
 {
+  "type": "commonjs",
   "name": "appointments-backend",
   "version": "0.0.1",
   "description": "This repository contains the backend application for a booking appointments full-stack application. The backend handles API endpoints, data validation, and business logic for managing doctor appointments.",
