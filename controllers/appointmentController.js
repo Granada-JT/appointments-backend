@@ -4,25 +4,18 @@ const { APPOINTMENT_MODEL } = require("../models/appointment");
 const db = initDatabase();
 
 exports.getAppointments = async(req, res) => {
-	const { startDate, endDate } = req.query;
-
-	if (!startDate || !endDate) {
-		return res.status(400).json({ error: "Start date and end date are required" });
-	}
-
 	const sql = `
 		SELECT * FROM appointments
-		WHERE appointment_start_date BETWEEN ? AND ?
 		ORDER BY appointment_start_date, appointment_start_time
 	`;
 
-	db.all(sql, [startDate, endDate], (error, rows) => {
+	db.all(sql, [], (error, rows) => {
 		if (error) {
-			console.error(error)
+			console.error(error);
 			return res.status(500).json({ error: "Failed to fetch appointments" });
 		}
 		return res.status(200).json(rows);
-	})
+	});
 }
 
 exports.createAppointment = async(req, res) => {
