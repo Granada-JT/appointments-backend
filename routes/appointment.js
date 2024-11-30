@@ -11,8 +11,8 @@ router.get("/", getAppointments);
 
 router.post("/create", createAppointment);
 
-router.patch("/edit", editAppointment);
+router.patch("/edit/:id", editAppointment);
 
-router.delete("/delete", deleteAppointment);
+router.delete("/delete/:id", deleteAppointment);
 
 module.exports = router;
