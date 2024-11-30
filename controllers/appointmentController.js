@@ -81,14 +81,14 @@ exports.createAppointment = async(req, res) => {
 }
 
 exports.editAppointment = async(req, res) => {
+	const { id } = req.params;
 	const {
-		id,
 		patientName,
 		appointmentStartDate,
 		appointmentEndDate,
 		appointmentStartTime,
 		appointmentEndTime,
-		comments,
+		comments
 	} = req.body;
 
 	if (!id) {
@@ -132,7 +132,7 @@ exports.editAppointment = async(req, res) => {
 }
 
 exports.deleteAppointment = async(req, res) => {
-	const { id } = req.body;
+	const { id } = req.params;
 
 	if (!id) {
 		return res.status(400).json({ error: "Appointment ID is required" });
