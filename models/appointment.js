@@ -8,8 +8,8 @@ const APPOINTMENT_MODEL = `
 		comments
 	)
 	VALUES (?, ?, ?, ?, ?, ?)
-`
+`;
 
 module.exports = {
-	APPOINTMENT_MODEL
+  APPOINTMENT_MODEL,
 };

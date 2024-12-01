@@ -1,10 +1,10 @@
 const express = require("express");
 const {
-	getAppointments,
-	createAppointment,
-	editAppointment,
-	deleteAppointment
-} = require("../controllers/appointmentController")
+  getAppointments,
+  createAppointment,
+  editAppointment,
+  deleteAppointment,
+} = require("../controllers/appointmentController");
 const router = express.Router();
 
 router.get("/", getAppointments);
